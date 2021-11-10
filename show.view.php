@@ -42,10 +42,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
-
-                        foreach ($posts as $post) :
-                        ?>
                             <tr>
                                 <th scope="row"><?= $post['id'] ?></th>
                                 <td> <a href="/show.php?id=<?= $post['id'] ?>"><?= $post['title'] ?> </a> </td>
@@ -54,7 +50,7 @@
                                     <a href="#" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
-                        <?php endforeach; ?>
+                
                     </tbody>
                 </table>
             </div>
