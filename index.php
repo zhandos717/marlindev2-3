@@ -1,7 +1,36 @@
+<?php
 
 
+function dd($data)
+{
+highlight_string("<?php\n " . var_export($data, true) . "?>");
+echo '<script>document.getElementsByTagName("code")[0].getElementsByTagName("span")[1].remove() ;document.getElementsByTagName("code")[0].getElementsByTagName("span")[document.getElementsByTagName("code")[0].getElementsByTagName("span").length - 1].remove() ; </script>';
+die();
+}
+
+
+
+    $pdo =  new PDO("mysql:host=localhost;dbname=marlindev;charset=utf8", 'root', '');
+
+    $sql = 'SELECT * FROM posts';
+    $statement = $pdo->prepare($sql);
+    $statement->execute();
+    $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        // var_dump($posts);
+        // die;
+    /****
+     * Соеденить с базой
+     * Выполнить запрос
+     * Получить ассоцитиный  
+     * 
+     */
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +39,7 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -42,14 +72,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td> Для современного мира.</td>
-                            <td> 
-                                <a href="#" class="btn btn-warning">Edit</a>
-                                <a href="#" class="btn btn-danger">Delete</a>
-                            </td>
-                        </tr>
+                        <?php
+
+                        foreach ($posts as $post) :
+                        ?>
+                            <tr>
+                                <th scope="row"><?= $post['id'] ?></th>
+                                <td> <?= $post['title'] ?></td>
+                                <td>
+                                    <a href="#" class="btn btn-warning">Edit</a>
+                                    <a href="#" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
@@ -58,4 +93,5 @@
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
+
 </html>
