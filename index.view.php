@@ -32,7 +32,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 offset-md-2">
-                <a href="" class="btn btn-success">Add Post</a>
+                <a href="/create.php" class="btn btn-success">Add Post</a>
                 <table class="table">
                     <thead>
                         <tr>
@@ -51,7 +51,7 @@
                                 <td> <a href="/show.php?id=<?= $post['id'] ?>"><?= $post['title'] ?> </a> </td>
                                 <td>
                                     <a href="/edit.php?id=<?= $post['id'] ?>" class="btn btn-warning">Edit</a>
-                                    <a href="#" class="btn btn-danger">Delete</a>
+                                    <a href="/delete.php?id=<?= $post['id'] ?>" onclick="return confirm('are you sure?')" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

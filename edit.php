@@ -2,9 +2,7 @@
 include 'functions.php';
 $db = include 'database/start.php';
 $post = $db->getOne('posts', $_GET['id']);
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,12 +37,12 @@ $post = $db->getOne('posts', $_GET['id']);
     <div class="container">
         <div class="row">
             <div class="col-md-8 offset-md-2">
-                <form method="POST" action="/update.php">
+                <form method="POST" action="/update.php?id=<?= $post['id'] ?>">
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
-                        <input type="text" name="title" class="form-control" placeholder="go to the store" value="<?= $post['title']?>" id="title">
+                        <input type="text" name="title" class="form-control" placeholder="go to the store" value="<?= $post['title'] ?>" id="title">
                     </div>
-                    <button type="submit" class="btn btn-success">Add POST</button>
+                    <button type="submit" class="btn btn-warning">Edit POST</button>
                 </form>
             </div>
         </div>
